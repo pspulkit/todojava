@@ -1,20 +1,23 @@
 package com.example.todo.common;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.util.Date;
 
 @MappedSuperclass
-
+@Getter
+@Setter
 public abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column
-    private long id;
+    long id;
 
-    @CreatedDate
+    @CreationTimestamp
     Date createdAt;
     @UpdateTimestamp
     Date updatedAt;

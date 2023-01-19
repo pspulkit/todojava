@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Scope;
 @SpringBootApplication
 public class TodoApplication {
     @Bean
-    @Scope("Singleton")
+    @Scope("singleton")
     public ModelMapper modelMapper(){
         return new ModelMapper();
     }

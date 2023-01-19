@@ -5,6 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TaskService {
@@ -15,8 +16,12 @@ public class TaskService {
         this.modelMapper = modelMapper;
 
     }
-    public List<TaskEntity> getAllTasks(){
-        return taskRespository.findAll();
+    public List<TaskDto> getAllTasks(){
+
+        return taskRespository.findAll()
+                .stream()
+                .map(task -> modelMapper.map(task,TaskDto.class)
+        ).collect(Collectors.toList());
     }
 
     public TaskDto getTaskId(Long id){
